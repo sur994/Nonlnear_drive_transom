@@ -115,8 +115,8 @@ def full_Hamil(elem,Eq,Ej,phi_j,gamma,f,tprime,Nsteps,p,save,level,loop):
                 T_n[st]=(1j*Ej_star*L_n[st])/np.sqrt(st+1)
                 
                 
-        delta=0.5*Eq_star*(L_n0_vec[2]-1)
-        
+        #delta=0.5*Eq_star*(L_n0_vec[2]-1)
+        delta=0
         print(delta)
         
       
@@ -178,7 +178,17 @@ def full_Hamil(elem,Eq,Ej,phi_j,gamma,f,tprime,Nsteps,p,save,level,loop):
         
         wigner_function = qt.wigner(rho_qutip, xvec, yvec);
         
-        plt.imshow(wigner_function, extent=[xvec[0], xvec[-1], yvec[0], yvec[-1]], cmap='viridis', interpolation='nearest')
-        plt.xlabel('x')
-        plt.ylabel('p')
-        plt.show()
+        
+        wmap = plt.contourf(xvec, yvec, wigner_function, 100, cmap='magma')
+        #wmap = qt.wigner_cmap(wigner_function) 
+        
+        
+        
+       # plt1 = plt.contourf(xvec, xvec,wigner_function ,100, cmap=wmap)
+       # axes=plt.gca();
+        plt.xlabel('x');
+        plt.ylabel('p');
+        #cb = plt.colorbar(plt1,ax=axes)
+        plt.colorbar(wmap)
+
+        plt.show();
